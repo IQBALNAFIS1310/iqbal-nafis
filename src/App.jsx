@@ -84,7 +84,7 @@ const projects = [
     tags: ["React", "Supabase", "Tailwind", "TMDB", "Routed"],
     image: "/iqnefo-movies.png",
     link: "https://github.com/IQBALNAFIS1310/IQNEFO-MOVIE",
-    visit :"iqnefo-moviecom.vercel.app",
+    visit :"https://iqnefo-moviecom.vercel.app",
   }
 ];
 
