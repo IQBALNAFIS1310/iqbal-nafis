@@ -36,7 +36,7 @@ const skills = [
   { name: "MySQL", level: 80 },
   { name: "PostgreSQL", level: 70 },
   { name: "Bahasa Indonesia (Mahir)", level: 95 },
-  { name: "Bahasa Inggris (Sedang)", level: 80},
+  { name: "Bahasa Inggris (Sedang)", level: 80 },
 ];
 
 const pengalaman = [
@@ -75,7 +75,7 @@ const projects = [
     tags: ["React", "Supabase", "Tailwind", "Routed"],
     image: "/Rumah-Makan.png",
     link: "https://github.com/IQBALNAFIS1310/rm-jaso-mande",
-    visit : "https://rm-jaso-mande.vercel.app/",
+    visit: "https://rm-jaso-mande.vercel.app/",
   },
   {
     id: 2,
@@ -84,14 +84,34 @@ const projects = [
     tags: ["React", "Supabase", "Tailwind", "TMDB", "Routed"],
     image: "/iqnefo-movies.png",
     link: "https://github.com/IQBALNAFIS1310/IQNEFO-MOVIE",
-    visit :"https://iqnefo-moviecom.vercel.app",
-  }
+    visit: "https://iqnefo-moviecom.vercel.app",
+  },
 ];
 
+// Variants animasi
+const fadeInUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
+const containerStagger = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.15 },
+  },
+};
+
+const itemFade = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
 
 function SkillBar({ name, level }) {
   return (
-    <motion.div whileHover={{ scale: 1.03 }} className="w-full">
+    <motion.div
+      variants={itemFade}
+      className="w-full"
+    >
       <div className="flex justify-between mb-1 text-sm">
         <span>{name}</span>
         <span>{level}%</span>
@@ -99,7 +119,8 @@ function SkillBar({ name, level }) {
       <div className="w-full h-2 bg-gray-800 rounded-full overflow-hidden">
         <motion.div
           initial={{ width: 0 }}
-          animate={{ width: `${level}%` }}
+          whileInView={{ width: `${level}%` }}
+          viewport={{ once: true }}
           transition={{ duration: 1 }}
           className={`h-full ${accent}`}
         />
@@ -172,25 +193,48 @@ export default function App() {
           </div>
         </motion.header>
 
-        {/* ABOUT + SKILLS */}
-        {/* SKILLS section rendering */}
-        <section className="mt-12">
+        {/* SKILLS */}
+        <motion.section
+          className="mt-12"
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           <h3 className="text-2xl font-bold mb-6">Keahlian</h3>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <motion.div
+            variants={containerStagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid gap-4 sm:grid-cols-2"
+          >
             {skills.map((s) => (
               <SkillBar key={s.name} {...s} />
             ))}
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
 
-        {/* pengalaman */}
-        <section className="mt-16">
+        {/* PENGALAMAN */}
+        <motion.section
+          className="mt-16"
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           <h3 className="text-2xl font-bold mb-6">Pengalaman</h3>
-          <div className="grid gap-6 md:grid-cols-2">
+          <motion.div
+            variants={containerStagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid gap-6 md:grid-cols-2"
+          >
             {pengalaman.map((p) => (
               <motion.div
                 key={p.id}
-                whileHover={{ scale: 1.02 }}
+                variants={itemFade}
                 className="p-5 rounded-2xl bg-gray-800/50 border border-slate-700"
               >
                 <h4 className="text-xl font-semibold mb-2">{p.title}</h4>
@@ -202,16 +246,120 @@ export default function App() {
                 </div>
               </motion.div>
             ))}
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
+        <motion.section
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mt-16"
+        >
+          <h3 className="text-2xl font-bold mb-6">Sertifikat Pelatihan</h3>
+          <motion.div
+            variants={containerStagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            {[
+              { title: "Logika Algoritma C", date: "Sep 2023", provider: "PUB" },
+              { title: "Fundamental C# & .NET Desktop Development", date: "Jul 2024", provider: "PUB" },
+              { title: "Web Fundamentals (HTML, CSS, JavaScript)", date: "May 2024", provider: "PUB" },
+              { title: "React.js Fundamentals", date: "May 2025", provider: "PUB" },
+              { title: "Database MySQL & SQLyog", date: "Jan 2024", provider: "PUB" },
+              { title: "C# ASP.NET Core Web & API", date: "Oct 2024", provider: "PUB" },
+              { title: "Data Structures C", date: "Jan 2024", provider: "PUB" },
+            ].map((cert, i) => (
+              <motion.div
+                key={i}
+                variants={itemFade}
+                whileHover={{ scale: 1.03 }}
+                className="rounded-xl bg-gray-800/60 border border-slate-700 shadow-lg p-5 flex flex-col justify-between"
+              >
+                <div>
+                  <h4 className="text-lg font-semibold mb-2 text-blue-300">🎓 {cert.title}</h4>
+                  <p className="text-slate-400 text-sm">{cert.provider} — {cert.date}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.section>
 
-        <section className="mt-16">
+        <motion.section
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mt-16"
+        >
+          <h3 className="text-2xl font-bold mb-6">Penghargaan</h3>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              "Instructor Recognition – Web Fundamentals (HTML, CSS, JavaScript)",
+              "Instructor Recognition – Logika & Algoritma (C Language)",
+              "Instructor Recognition – Data Structure",
+            ].map((award, i) => (
+              <motion.div
+                key={i}
+                variants={itemFade}
+                whileHover={{ scale: 1.05 }}
+                className="rounded-xl bg-gradient-to-br from-blue-900/60 to-slate-800/60 border border-slate-700 p-5 shadow-lg"
+              >
+                <h4 className="font-semibold text-lg text-blue-300">🏆 {award}</h4>
+                <p className="text-slate-400 text-sm mt-2">Beasiswa PUB</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
+
+
+        <motion.section
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mt-16"
+        >
+          <h3 className="text-2xl font-bold mb-6">Pengalaman Organisasi</h3>
+          <div className="grid sm:grid-cols-2 gap-6">
+            <motion.div
+              variants={itemFade}
+              whileHover={{ scale: 1.03 }}
+              className="rounded-xl bg-gray-800/60 border border-slate-700 p-5 shadow-lg"
+            >
+              <h4 className="text-lg font-semibold mb-2 text-blue-300">👥 Divisi Pendidikan PUB</h4>
+              <p className="text-slate-300 text-sm">
+                Sep 2024 – Aug 2025 <br />
+                Mengajar logika algoritma, C, struktur data, MySQL, HTML, CSS, JavaScript,
+                serta fundamental C# desktop app.
+              </p>
+            </motion.div>
+          </div>
+        </motion.section>
+
+
+        {/* PROJECTS */}
+        <motion.section
+          className="mt-16"
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           <h3 className="text-2xl font-bold mb-6">Projek Saya</h3>
-          <div className="grid gap-6 md:grid-cols-2">
+          <motion.div
+            variants={containerStagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid gap-6 md:grid-cols-2"
+          >
             {projects.map((p) => (
               <motion.div
                 key={p.id}
-                whileHover={{ scale: 1.02 }}
+                variants={itemFade}
                 className="rounded-2xl overflow-hidden bg-gray-800/50 border border-slate-700 shadow-lg"
               >
                 <img src={p.image} alt={p.title} className="w-full h-48 object-cover" />
@@ -243,9 +391,12 @@ export default function App() {
                 </div>
               </motion.div>
             ))}
-          </div>
-        </section>
-        <footer className="text-center text-slate-500 text-sm py-6">© {new Date().getFullYear()} {profile.name} — IQNEFO</footer>
+          </motion.div>
+        </motion.section>
+
+        <footer className="text-center text-slate-500 text-sm py-6">
+          © {new Date().getFullYear()} {profile.name} — IQNEFO
+        </footer>
       </main>
     </div>
   );
