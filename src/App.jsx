@@ -36,7 +36,7 @@ const skills = [
   { name: "MySQL", level: 80 },
   { name: "PostgreSQL", level: 70 },
   { name: "Bahasa Indonesia (Mahir)", level: 95 },
-  { name: "Bahasa Inggris (Sedang)", level: 65 },
+  { name: "Bahasa Inggris (Sedang)", level: 80},
 ];
 
 const pengalaman = [
@@ -72,26 +72,20 @@ const projects = [
     id: 1,
     title: "Profil Rumah Makan dan Sistem Informasi",
     desc: "Aplikasi Profile Rumah Makan Sekaligus Sistem Transaksi dan Keuangan",
-    tags: ["React", "Supabase", "Tailwind"],
+    tags: ["React", "Supabase", "Tailwind", "Routed"],
     image: "/Rumah-Makan.png",
     link: "https://github.com/IQBALNAFIS1310/rm-jaso-mande",
+    visit : "https://rm-jaso-mande.vercel.app/",
   },
   {
     id: 2,
     title: "IQNEFO | MOVIE",
     desc: "Aplikasi web untuk melihat daftar movie bioskop dengan api TMDB",
-    tags: ["React", "Recharts"],
+    tags: ["React", "Supabase", "Tailwind", "TMDB", "Routed"],
     image: "/iqnefo-movies.png",
     link: "https://github.com/IQBALNAFIS1310/IQNEFO-MOVIE",
+    visit :"iqnefo-moviecom.vercel.app",
   }
-  // {
-  //   id: 3,
-  //   title: "Website Profil Perusahaan",
-  //   desc: "Landing page interaktif untuk client B2B, fokus konversi dan brand identity.",
-  //   tags: ["React", "Headless CMS"],
-  //   image: "/Rumah-Makan.png",
-  //   link: "https://github.com/username/company-landing",
-  // },
 ];
 
 
@@ -237,14 +231,21 @@ export default function App() {
                   >
                     <Github size={16} /> Lihat di GitHub
                   </a>
+                  <br />
+                  <a
+                    href={p.visit}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
+                  >
+                    Kunjungi
+                  </a>
                 </div>
               </motion.div>
             ))}
           </div>
         </section>
-
-
-        <footer className="text-center text-slate-500 text-sm py-6">© {new Date().getFullYear()} {profile.name} — Dibuat dengan ❤️ & React</footer>
+        <footer className="text-center text-slate-500 text-sm py-6">© {new Date().getFullYear()} {profile.name} — IQNEFO</footer>
       </main>
     </div>
   );
