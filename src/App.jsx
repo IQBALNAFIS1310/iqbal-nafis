@@ -21,7 +21,7 @@ const profile = {
     linkedin: "https://www.linkedin.com/in/iqbal-nafis-263a73372/",
     email: "iqbalnafis487@gmail.com",
     phone: "+62 852-7131-9905",
-    website: "https://www.iqnefoservices.com",
+    website: "https://iqneforev.my",
   },
 };
 
